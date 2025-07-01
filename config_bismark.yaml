@@ -1,0 +1,10 @@
+fastqfolder: /path/to/fastqfiles/
+lambdagenome: /path/to/the/lambda/genome/folder/
+humangenome: /path/to/the/human/genome/folder/
+humangenomefa: /path/to/the/human/genome/folder/hg19.fa
+target: resources/RRBS_regions20-200_hg19_chr.interval_list
+genomebuild: GRCh37 # options: GRCh37, GRCh38, GRCm38 or GRCm39
+sequencer: NovaSeq # options: NextSeq, NovaSeq or HiSeq
+trimming: soft # options: hard, soft, none. Hard = if demultiplexed with adaptor sequence present. Soft = if correctly (no adaptorsequence in sample sheet) demultiplexed.
+dualindex: True #options: True or False.
+zerocov: False # options: True or False. If True, write 0-based cov files. Put "False" if you have no idea what this means.

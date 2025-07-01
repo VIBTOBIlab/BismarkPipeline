@@ -1,0 +1,154 @@
+{
+  "sortbyread" :
+  {
+    "time": "07:00:00",
+    "ntasks": 2
+  },
+  "demultiplex" :
+  {
+    "time": "12:00:00",
+    "ntasks": 10,
+    "mem": "30G"
+  },
+  "cutadapt" :
+  {
+    "time": "07:00:00",
+    "ntasks": 2
+  },
+  "extratrim" :
+  {
+    "time": "11:59:00",
+    "ntasks": 6
+  },
+  "convertnpz" :
+  {
+    "time": "1:00:00",
+    "ntasks": 2
+  },
+  "plotnpz" :
+  {
+    "time": "1:00:00",
+    "ntasks": 2
+  },
+  "umitools_extract" :
+  {
+    "time": "07:00:00",
+    "ntasks": 2
+  },
+  "adaptortrimming_preclean" :
+  {
+    "time": "07:00:00",
+    "ntasks": 2
+  },
+  "adaptortrimming" :
+  {
+    "time": "07:00:00",
+    "ntasks": 2
+  },
+  "adaptortrimming2" :
+  {
+    "time": "07:00:00",
+    "ntasks": 2
+  },
+  "mapping_bismark" :
+  {
+    "time": "23:59:00",
+    "ntasks": 20,
+    "mem": "50G"
+  },
+  "dedupl_UMI" :
+  {
+    "time": "11:00:00",
+    "ntasks": 6
+  },
+  "dedupl_noUMI" :
+  {
+    "time": "08:00:00",
+    "ntasks": 2
+  },
+  "umitags" :
+  {
+    "time": "11:00:00",
+    "ntasks": 1
+  },
+  "sort_samtools" :
+  {
+    "time": "11:40:00",
+    "ntasks": 4,
+    "mem": "30G"
+  },
+  "query_sort_samtools" :
+  {
+    "time": "11:40:00",
+    "ntasks": 4,
+    "mem": "40G"
+  },
+  "coord_sort_samtools" :
+  {
+    "time": "11:40:00",
+    "ntasks": 4
+  },
+  "rm_optical_dups" :
+  {
+    "time": "23:40:00",
+    "ntasks": 16,
+    "mem": "60G"
+  },
+  "hsmetrics" :
+  {
+    "time": "05:30:00",
+    "ntasks": 3,
+    "mem": "40G"
+  },
+"mapping_to_lambda_bismark" :
+  {
+    "time": "08:45:00",
+    "ntasks": 4
+  },
+ "extract_methylation_calls_dedupl_UMI":
+ {
+   "time": "11:50:00",
+   "ntasks": 10
+ },
+ "extract_methylation_calls":
+ {
+   "time": "11:50:00",
+   "ntasks": 10
+ },
+ "extract_methylation_calls_dedupl_noUMI":
+ {
+   "time": "11:50:00",
+   "ntasks": 10
+ },
+ "extract_methylation_calls_nodedupl":
+ {
+   "time": "11:50:00",
+   "ntasks": 10
+ },
+ "deduplicate":
+ {
+   "time": "21:00:00",
+   "ntasks": 16
+ },
+ "extract_methylation_calls_deduplicated":
+ {
+   "time": "11:50:00",
+   "ntasks": 10
+ },
+ "rename":
+ {
+   "time": "01:05:00",
+   "ntasks": 1
+ },
+ "multiqc":
+ {
+   "time": "04:20:00",
+   "ntasks": 3
+ },
+ "rrbsmetrics":
+ {
+   "time": "02:20:00",
+   "ntasks": 8,
+   "mem": "20G"
+ }
+}
