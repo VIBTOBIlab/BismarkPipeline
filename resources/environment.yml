@@ -256,4 +256,3 @@ dependencies:
   - zipp=3.15.0=pyhd8ed1ab_0
   - zlib=1.3.1=hb9d3cd8_2
   - zstd=1.5.7=hb8e6e7a_2
-prefix: /kyukon/scratch/gent/vo/002/gvo00224/TOBI/Resources/Conda/envs/snakemake-6.1.0
