@@ -1,17 +1,20 @@
 # BismarkPipeline v1.0.0
+> [!WARNING]
+**Deprecated:** This pipeline was used in the [Benchmarking] paper but is no longer maintained. We strongly recommend using the actively supported [MethylSeq pipeline](https://github.com/VIBTOBIlab/MethylSeq) instead of this BismarkPipeline.
 
 ## Set-up
 Install the pipeline with:
 ```bash
-git clone git@github.ugent.be:DePreterLab/BismarkPipeline.git
+git clone git@github.com:VIBTOBIlab/BismarkPipeline.git
 cd BismarkPipeline/
-(echo 3; echo a; echo PipelineDir="$PWD"; echo .; echo wq) | ed runBismarkPipeline_containers.sh
+(echo g/^PipelineDir=/s@.*@PipelineDir="$PWD"@; echo wq) | ed runBismarkPipeline_containers.sh 
 ```
 
 Then, create a conda environment to run snakemake using the following [yaml file](resources/environment.yml):
 
-```
-conda env create -f environment.yml
+```bash
+# If you are in the pipeline directory
+conda env create -f ./environment.yml
 conda activate snakemake-6.1.0
 ```
 
@@ -22,7 +25,7 @@ The reference genome can be converted in silico to an RR genome with [mkrrgenome
 ```bash
 mkdir -p chromosomes
 
-awk '/^>/{if (out){close(out)}; out="chromosomes/"substr($1,2)".fa"} {print >> out}' hg38.fa
+awk '/^>/{if (out){close(out)}; out="chromosomes/"substr($1,2)".fa"} {print >> out}' hg19.fa
 ```
 
 Once this is done, you can run the following command, which scans the genome for MspI recognition sites (C′CGG) saving only those fragments that fall in the specified size range of 20-200 bp.
@@ -46,24 +49,29 @@ To run Picard HSmetrics, this target file is necessary. In the [resources](resou
 
 
 ## Initiating the pipeline
-To initiate the pipeline, navigate to a folder where you want to perform the analysis. This folder should only contain the `config_bismark.yaml` with the correct paths. Finally you can run the pipeline as reported in the [example bash script](runBismarkPipeline_containers.sh):
+To initiate the pipeline, navigate to a folder where you want to perform the analysis. This folder should only contain the `config_bismark.yaml` with the correct paths. Finally you can run [runBismarkPipeline_containers.sh](runBismarkPipeline_containers.sh):
 
 ```bash
-PipelineDir=/path/to/the/pipeline/folder
-snakefile="${PipelineDir}/Bismark_pipeline_PE_containers.snakefile"
-profile="${PipelineDir}/slurm_profile"
-clusterTime="${PipelineDir}/clusterLong.json"
-
-snakemake --use-singularity -s ${snakefile} --cluster-config ${clusterTime} --profile ${profile} --jobs 200 --rerun-incomplete
+screen 
+# In folder containing config_bismark.yaml
+conda activate snakemake-6.1.0
+bash <path-to-BismarkPipeline>/runBismarkPipeline_containers.sh
+ctr a d
 ```
 
 Optionally, you can specify a profile that you can use to optimally submit jobs in an HPC environment.
 
 ## Output
-The output of the pipeline is a html report with the workflow (see `example-report.html`) and MultiQC.
+The output of the pipeline is a html report with the workflow and MultiQC.
+
+## Error
+`subprocess.CalledProcessError: Command '<path>/BismarkPipeline/slurm_profile/slurm-status.py 56792793' returned non-zero exit status 126` can be solved by command:
+```bash
+chmod +x <path-to-BismarkPipeline>/slurm_profile/slurm-submit.py
+```
 
 ## Contact
-This pipeline was built by Ruben Van Paemel (Ruben.VanPaemel@ugent.be) and Andries De Koker (andries.dekoker@ugent.vib.be). [Edoardo Giuili](https://github.com/edogiuili) and [Sofie Van de Velde](https://github.com/sofvdvel) are the maintainers.
+This pipeline was built by [Ruben Van Paemel](https://github.com/rmvpaeme) and [Andries De Koker](https://github.com/AndriesDeKoker). Maintainers of the pipeline are [Edoardo Giuili](https://github.com/edogiuili) and [Sofie Van de Velde](https://github.com/sofvdvel).
 
 ## Overview
 <img src="./report/workflow.png" width="100%" height="100%">
